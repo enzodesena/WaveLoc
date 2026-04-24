@@ -1,15 +1,15 @@
 import os
 import numpy as np
-import pysofa
+import sofar as sf
 from BasicTools import DspTools
 import matplotlib.pyplot as plt
 
 """Align brirs of reverberant rooms to that from the anechoic room
 """
 
-brirs_dir = os.path.expanduser('~/Work_Space/Data/RealRoomBRIRs')
+brirs_dir = os.path.expanduser('../data/external/RealRoomBRIRs-master')
 brirs_aligned_dir = 'brirs_aligned'
-os.mkdir(brirs_aligned_dir, exist_ok=True)
+os.makedirs(brirs_aligned_dir, exist_ok=True)
 
 n_azi = 37
 n_channel = 2
@@ -33,7 +33,10 @@ def plot_brirs():
 
 def load_brirs(room):
     brirs_fpath = os.path.join(brirs_dir, f'UniS_{room}_BRIR_16k.sofa')
-    brirs = pysofa.SOFA(brirs_fpath).FIR.IR.transpose(0, 2, 1)
+    sofa = sf.read_sofa(brirs_fpath, verify=False)
+    # SOFA stores IR as (M: measurements, R: receivers, N: samples)
+    # We want (azi/measurement, samples, channel/receiver)
+    brirs = np.asarray(sofa.Data_IR).transpose(0, 2, 1)
     return brirs
 
 
