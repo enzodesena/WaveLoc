@@ -66,7 +66,12 @@ def syn_record(src_fpath_all, set_dir, n_wav_per_azi, task_i, pb):
         for azi_i in range(n_azi):
             for i in range(n_wav_per_azi):
                 pb.update(task_i)
-                src_fpath = src_fpath_all[wav_count]
+                # Cycle through source files: valid/test splits have fewer
+                # unique TIMIT utterances than rooms*azis*n_wav_per_azi, so
+                # sources are reused across different room/azimuth renderings.
+                # The assignment is still randomised because src_fpath_all is
+                # shuffled in gen_dataset() before being passed in.
+                src_fpath = src_fpath_all[wav_count % len(src_fpath_all)]
                 wav_count = wav_count+1
 
                 src, fs = wav_tools.read_wav(src_fpath)
