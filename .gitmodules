@@ -1,0 +1,3 @@
+[submodule "BasicTools"]
+	path = BasicTools
+	url = https://github.com/bingo-todd/BasicTools.git
