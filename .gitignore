@@ -6,4 +6,5 @@ pre_result
 models
 models_pre/
 gen_dataset/brirs_aligned/
-*/.DS_Store
+*.npy
+*.DS_Store

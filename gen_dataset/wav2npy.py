@@ -91,14 +91,14 @@ if __name__ == '__main__':
     for set_type in ['train', 'valid']:
         for room in room_all:
             print(room)
-            wav_set_dir = '../Data/v1/{}/reverb/{}'.format(set_type, room)
-            npy_set_dir = '../Data/v1/npy/{}/{}'.format(set_type, room)
+            wav_set_dir = '../data/v1/{}/reverb/{}'.format(set_type, room)
+            npy_set_dir = '../data/v1/npy/{}/{}'.format(set_type, room)
             wav2npy(wav_set_dir, npy_set_dir, False)
 
 
     for test_i in range(1,5):
         for room in room_all:
             print(room)
-            wav_set_dir = f'../Data/v{test_i}/test/reverb/{room}'
-            npy_set_dir = f'../Data/v{test_i}/npy/test/{room}'
+            wav_set_dir = f'../data/v{test_i}/test/reverb/{room}'
+            npy_set_dir = f'../data/v{test_i}/npy/test/{room}'
             wav2npy(wav_set_dir, npy_set_dir, False)

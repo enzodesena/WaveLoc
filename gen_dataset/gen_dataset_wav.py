@@ -11,9 +11,9 @@ from BasicTools.Filter_GPU import Filter_GPU
 from BasicTools.get_fpath import get_fpath
 
 
-TIMIT_dir = os.path.expanduser('~/Work_Space/Data/TIMIT_wav')
+TIMIT_dir = os.path.expanduser('../data/external/darpa-timit-acousticphonetic-continuous-speech/data/')
 brirs_dir = 'brirs_aligned'
-data_dir = '../Data'
+data_dir = '../data'
 
 room_all = ['Anechoic', 'Room_A', 'Room_B', 'Room_C', 'Room_D']
 n_room = 5
@@ -91,7 +91,7 @@ def gen_dataset(dir_path, set_type_all):
     # prepare sound source
     # train and validate
     if not os.path.exists('fpath_TIMIT_train_all.npy'):
-        TIMIT_train_dir = os.path.join(TIMIT_dir, 'TIMIT/TRAIN')
+        TIMIT_train_dir = os.path.join(TIMIT_dir, 'TRAIN')
         src_fpath_all = get_fpath(TIMIT_train_dir, '.wav', 
                                   is_absolute=True)
         np.save('fpath_TIMIT_train_all.npy', src_fpath_all)
@@ -104,7 +104,7 @@ def gen_dataset(dir_path, set_type_all):
 
     # test
     if not os.path.exists('fpath_TIMIT_test_all.npy'):
-        TIMIT_test_dir = os.path.join(TIMIT_dir, 'TIMIT/TEST')
+        TIMIT_test_dir = os.path.join(TIMIT_dir, 'TEST')
         src_fpath_test_all = get_fpath(TIMIT_test_dir, '.wav', 
                                   is_absolute=True)
         np.save('fpath_TIMIT_test_all.npy', src_fpath_test_all)
