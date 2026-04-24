@@ -70,7 +70,9 @@ def syn_record(src_fpath_all, set_dir, n_wav_per_azi, task_i, pb):
                 # unique TIMIT utterances than rooms*azis*n_wav_per_azi, so
                 # sources are reused across different room/azimuth renderings.
                 # The assignment is still randomised because src_fpath_all is
-                # shuffled in gen_dataset() before being passed in.
+                # shuffled in gen_dataset() before being passed in. Also,
+                # separation between training/validation/test is kept since
+                # it is done within gen_dataset().
                 src_fpath = src_fpath_all[wav_count % len(src_fpath_all)]
                 wav_count = wav_count+1
 
