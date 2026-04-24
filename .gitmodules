@@ -1,3 +1,6 @@
 [submodule "BasicTools"]
 	path = BasicTools
 	url = https://github.com/bingo-todd/BasicTools.git
+[submodule "Gammatone-filters"]
+	path = Gammatone-filters
+	url = https://github.com/bingo-todd/Gammatone-filters.git
