@@ -123,18 +123,24 @@ def gen_dataset(dir_path, set_type_all):
     # np.save(os.path.join(dir_path, 'src_fpath_all.npy'),
     #         [src_fpath_train_all, src_fpath_valid_all, src_fpath_test_all])
 
-    src_fpath_all = (src_fpath_train_all,
-                     src_fpath_valid_all,
-                     src_fpath_test_all)
+    # Look up source files by split name. Indexing by enumerate position would
+    # be wrong when set_type_all doesn't start with 'train' (e.g. ['test']).
+    src_fpath_all = {
+        'train': src_fpath_train_all,
+        'valid': src_fpath_valid_all,
+        'test':  src_fpath_test_all,
+    }
 
-    n_wav_all = [len(src_fpath_all[i]) for i in range(len(set_type_all))]
+    # Match the number of pb.update calls in syn_record (one per
+    # room x azimuth x wav-per-azimuth), not the source-pool size.
+    n_wav_all = [n_room * n_azi * n_wav_per_azi_all[s] for s in set_type_all]
     pb = ProcessBarMulti(n_wav_all, desc_all=set_type_all)
     proc_all = []
     for i, set_type in enumerate(set_type_all):
         print(set_type)
         set_dir = os.path.join(dir_path, set_type)
         proc = Process(target=syn_record,
-                       args=(src_fpath_all[i], set_dir,
+                       args=(src_fpath_all[set_type], set_dir,
                              n_wav_per_azi_all[set_type],
                              str(i), pb))
         proc.start()
