@@ -1,10 +1,25 @@
-models/
-models_valid/
+# Python / OS
 __pycache__/
+*.DS_Store
+
+# Misc artifacts
 .trash/
 pre_result
-models
-models_pre/
-gen_dataset/brirs_aligned/
 *.npy
-*.DS_Store
+
+# Trained models
+models/
+models_valid/
+models_pre/
+
+# Generated BRIRs
+gen_dataset/brirs_aligned/
+
+# data/ — ignore everything except the external/ subtree
+# (submodules and vendored datasets live there)
+/data/*
+!/data/external/
+
+# TIMIT dataset is downloaded by the user; only keep the .gitkeep placeholder
+/data/external/darpa-timit-acousticphonetic-continuous-speech/*
+!/data/external/darpa-timit-acousticphonetic-continuous-speech/.gitkeep
