@@ -52,7 +52,7 @@ def syn_record(src_fpath_all, set_dir, n_wav_per_azi, task_i, pb):
     """synthesize spatial recordings as well corresponding direct sound for
     each set
     """
-    filter_gpu = Filter_GPU(gpu_index=1)
+    filter_gpu = Filter_GPU(gpu_index=0)
 
     brirs_direct = load_brirs('Anechoic')
     wav_count = 0

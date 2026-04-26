@@ -5,9 +5,6 @@ from multiprocessing import Process
 from WaveLoc import WaveLoc
 from utils import file_reader_v2
 
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID" 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-
 
 data_dir = 'data'
 train_set_dir_base = os.path.join(data_dir, 'v1/npy/train')
@@ -26,7 +23,6 @@ model_basic_settings = {'fs': 16000,
                         'azi_num': 37,
                         'is_use_gtf': False,
                         'is_padd': False}
-gpu_index = 1
 
 
 def train_mct(room_tar, model_dir):
@@ -54,8 +50,7 @@ def train_mct(room_tar, model_dir):
             raise Exception('fail to create file')
         config.write(config_file)
 
-    model = WaveLoc(file_reader_v2.file_reader, config_fpath=config_fpath,
-                    gpu_index=gpu_index)
+    model = WaveLoc(file_reader_v2.file_reader, config_fpath=config_fpath)
     model.train_model(model_dir)
 
 

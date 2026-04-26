@@ -1,8 +1,5 @@
 import numpy as np
 import os
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID" 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-
 import sys
 from WaveLoc import WaveLoc
 from BasicTools import plot_tools
@@ -22,7 +19,7 @@ def evaluate_mct(model_dir_base):
         model_dir = os.path.join(model_dir_base, room)
         model_config_fpath = os.path.join(model_dir, 'config.cfg')
         model = WaveLoc(file_reader.file_reader,
-                        model_config_fpath, gpu_index=0)
+                        model_config_fpath)
         model.load_model(model_dir)
 
         for test_i in range(n_test):
