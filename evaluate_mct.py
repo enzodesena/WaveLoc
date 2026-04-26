@@ -27,7 +27,7 @@ def evaluate_mct(model_dir_base):
 
         for test_i in range(n_test):
             dataset_dir_test = os.path.join(
-                                    '/home/st/Work_Space/Localize/WaveLoc/Data',
+                                    'data',
                                     f'v{test_i+1}/test/reverb/{room[-1]}')
             rmse_all[test_i, room_i] = model.evaluate_chunk_rmse(
                                         dataset_dir_test,
