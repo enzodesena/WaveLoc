@@ -4,3 +4,6 @@
 [submodule "Gammatone-filters"]
 	path = Gammatone-filters
 	url = https://github.com/bingo-todd/Gammatone-filters.git
+[submodule "data/external/RealRoomBRIRs"]
+	path = data/external/RealRoomBRIRs
+	url = https://github.com/IoSR-Surrey/RealRoomBRIRs.git
