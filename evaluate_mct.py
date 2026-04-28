@@ -25,7 +25,7 @@ def evaluate_mct(model_dir_base):
         for test_i in range(n_test):
             dataset_dir_test = os.path.join(
                                     'data',
-                                    f'v{test_i+1}/test/reverb/{room[-1]}')
+                                    f'v{test_i+1}/test/reverb/{room}')
             rmse_all[test_i, room_i] = model.evaluate_chunk_rmse(
                                         dataset_dir_test,
                                         chunk_size=chunk_size)
